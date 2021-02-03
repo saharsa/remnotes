@@ -5,7 +5,6 @@
   "homepage": "./",
   "dependencies": {
     "@craco/craco": "^6.1.0",
-    "@fortawesome/fontawesome-free": "^5.15.2",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -26,9 +25,9 @@
     "test": "craco test",
     "eject": "react-scripts eject",
     "electron-start": "electron .",
-    "dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "dev": "set REACT_APP_ENV=dev && concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "preelectron-pack": "yarn build",
-    "electron-pack": "electron-builder --win --macos -c.extraMetadata.main=build/Main.js"
+    "electron-pack": "electron-builder --win -c.extraMetadata.main=build/main.js"
   },
   "build": {
     "appId": "nonExistentID",
@@ -62,7 +61,6 @@
     "concurrently": "^5.3.0",
     "electron": "^11.2.1",
     "electron-builder": "^22.9.1",
-    "electron-is-dev": "^1.2.0",
     "wait-on": "^5.2.1"
   }
 }

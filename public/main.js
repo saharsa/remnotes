@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
-const isDev = require('electron-is-dev'); 
+//const isDev = require('electron-is-dev'); 
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -12,7 +12,12 @@ function createWindow () {
   })
 
   //win.loadURL('http://localhost:3000')
-  const startURL = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`;
+  //isDev ? 'http://localhost:3000' : 
+  const isDev = process.env.REACT_APP_ENV;
+  let startURL = `file://${path.join(__dirname, '../build/index.html')}`;
+  if(isDev!=undefined && isDev.slice(0, -1)=='dev') {
+    startURL = 'http://localhost:3000';
+  }
   win.loadURL(startURL)
 }
 
